@@ -1,0 +1,26 @@
+name: Build
+on:
+  push:
+    branches: [main]
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  windows-x64:
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Build
+        run: .github/scripts/Build-Windows.ps1 -Target x64 -Configuration RelWithDebInfo
+      - name: Package
+        run: .github/scripts/Package-Windows.ps1 -Target x64 -Configuration RelWithDebInfo
+      - uses: actions/upload-artifact@v7
+        with:
+          name: trackspin-plugin-windows-x64
+          path: release/RelWithDebInfo/**
