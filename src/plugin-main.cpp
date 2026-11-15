@@ -38,7 +38,10 @@ MODULE_EXPORT const char *obs_module_description(void)
 
 bool obs_module_load(void)
 {
-	trackspin::runtime_start();
+	if (!trackspin::runtime_start()) {
+		obs_log(LOG_INFO, "plugin inactive (version %s)", PLUGIN_VERSION);
+		return true;
+	}
 	trackspin::register_card_source();
 	obs_log(LOG_INFO, "plugin loaded (version %s)", PLUGIN_VERSION);
 	return true;

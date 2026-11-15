@@ -1,4 +1,4 @@
-tree v0.2.0:.github/scripts/utils.pwsh
+tree HEAD:.github/scripts/utils.pwsh
 
 Ensure-Location.ps1
 Invoke-External.ps1

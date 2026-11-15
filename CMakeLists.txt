@@ -46,7 +46,7 @@ set(HTTPLIB_INSTALL OFF CACHE INTERNAL "")
 FetchContent_MakeAvailable(httplib)
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE httplib::httplib)
 if(WIN32)
-  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ws2_32)
+  target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ws2_32 advapi32 shell32 ole32)
 endif()
 
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE src/plugin-main.cpp src/card-source.cpp src/card-source.hpp src/runtime.cpp src/runtime.hpp)

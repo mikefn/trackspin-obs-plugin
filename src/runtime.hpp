@@ -24,7 +24,8 @@ struct RuntimeOptions {
 	std::string output_dir;             // папка для текстовых файлов; пусто — выключено
 };
 
-void runtime_start();
+// Returns false when the plugin must stay inactive (its Microsoft Store package was uninstalled).
+bool runtime_start();
 void runtime_stop();
 // Настройки общие; применяются из свойств источника «Сейчас играет» (последний изменённый — главный).
 void runtime_set_options(const RuntimeOptions &opts);
